@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <hr>
+
+    {{ form_start(deleteForm) }}
+    <button class="btn btn-danger" type="submit">Delete</button>
+    {{ form_end(deleteForm) }}
+</div>
+{% endblock %}
