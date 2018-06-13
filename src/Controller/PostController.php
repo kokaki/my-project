@@ -11,12 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class PostController extends Controller
 {
     /**
-     * @Route("/post", name="post")
+     * @Route("/post", methods="GET", name="post")
      */
     public function index()
     {
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findAll();
+
         return $this->render('post/index.html.twig', [
-            'controller_name' => 'PostController',
+            'posts' => $posts
         ]);
     }
 
