@@ -21,15 +21,11 @@ class TrackDAO {
 		$sql_orderBy = ' ORDER BY set_no, track_no;';
 		$sql = $sql_select_1 . $sql_select_2 . $sql_select_3 . $sql_select_4 . $sql_from . $p_table_name .
 				$sql_where . $sql_orderBy;
-//		$types = array('text'); MDB2からPDOに
-//		$stmt = $p_db->prepare($sql, $types);
-//		$res = $stmt->execute(array($p_library_package_id));
-//		if (PEAR::isError($res)) {
-//			die('Track $stmt->execute' . $res->getMessage());
-//		}
+		$types = array('text');
 		try {
+		    $stmt = $p_db->prepare($sql, $types);
+            $res = $stmt->execute(array($p_library_package_id));
     		$result = null;
-//    		while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) { MDB2からPDOに
     		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         		$track = new TrackDTO();
     			$track->library_track_id = $row['library_track_id'];

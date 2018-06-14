@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="post")
+ *
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  */
 class Post

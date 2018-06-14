@@ -22,17 +22,11 @@ class PackageDAO {
 		$sql_orderBy = ' ORDER BY library_package_id;';
 		$sql = $sql_select_1 . $p_import_type . $sql_select_2 . $sql_select_3 . $sql_from . $p_table_name .
 				$sql_where . $sql_orderBy;
-//		$types = array('text', 'text', 'text'); MDB2からPDOに
-//		$stmt = $p_db->prepare($sql, $types);
-//		$res = $stmt->execute(array($p_search_key, $p_search_key, $p_search_key));
-//		if (PEAR::isError($res)) {
-//			die('Package $stmt->execute' . $res->getMessage());
-//		}
+		$types = array('text', 'text', 'text');
 		try {
-		    $stmt = $p_db->prepare($sql);
-    		$res = $stmt->execute(array($p_search_key, $p_search_key, $p_search_key));
+		    $stmt = $p_db->prepare($sql, $types);
+            $res = $stmt->execute(array($p_search_key, $p_search_key, $p_search_key));
     		$package = null;
-//    		if ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) { MDB2からPDOに
     		if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         		$package = new PackageDTO();
     			$package->library_package_id = $row['library_package_id'];
